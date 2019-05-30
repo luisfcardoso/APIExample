@@ -44,7 +44,7 @@ public class CategoryResource {
         return ResponseEntity.created(uri).body(saveCategory);
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     public Category searchById(@PathVariable Long id) {
         return categoryRepository.findOne(id);
     }
