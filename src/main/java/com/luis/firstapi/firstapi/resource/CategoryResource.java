@@ -1,6 +1,5 @@
 package com.luis.firstapi.firstapi.resource;
 
-import java.net.URI;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
