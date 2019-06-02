@@ -16,12 +16,28 @@ public class PersonService {
 
 	public Person update(Long id, Person person) {
 		Person savedPerson = personRepository.findOne(id);
+		
 		if (savedPerson == null) {
 			throw new EmptyResultDataAccessException(1);
 		}
 		
 		BeanUtils.copyProperties(person, savedPerson, "id");
+		
 		return personRepository.save(savedPerson);
+	}
+
+	public void updateByPropertyActive(Long id, Boolean active) {
+		Person savedPerson = searchPersonById(id);
+		savedPerson.setActive(active);
+		personRepository.save(savedPerson);
+	}
+	
+	private Person searchPersonById(Long id) {
+		Person savedPerson = personRepository.findOne(id);
+		if (savedPerson == null) {
+			throw new EmptyResultDataAccessException(1);
+		}
+		return savedPerson;
 	}
 	
 }
