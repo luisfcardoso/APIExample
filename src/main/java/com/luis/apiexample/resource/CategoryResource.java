@@ -1,13 +1,13 @@
-package com.luis.firstapi.firstapi.resource;
+package com.luis.apiexample.resource;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-import com.luis.firstapi.firstapi.event.CreatedResourceEvent;
-import com.luis.firstapi.firstapi.model.Category;
-import com.luis.firstapi.firstapi.repository.CategoryRepository;
+import com.luis.apiexample.event.CreatedResourceEvent;
+import com.luis.apiexample.model.Category;
+import com.luis.apiexample.repository.CategoryRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;

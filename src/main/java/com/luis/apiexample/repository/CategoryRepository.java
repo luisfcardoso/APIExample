@@ -1,6 +1,6 @@
-package com.luis.firstapi.firstapi.repository;
+package com.luis.apiexample.repository;
 
-import com.luis.firstapi.firstapi.model.Category;
+import com.luis.apiexample.model.Category;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

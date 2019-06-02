@@ -1,4 +1,4 @@
-package com.luis.firstapi.firstapi.exceptionhandler;
+package com.luis.apiexample.exceptionhandler;
 
 import java.util.ArrayList;
 import java.util.Arrays;

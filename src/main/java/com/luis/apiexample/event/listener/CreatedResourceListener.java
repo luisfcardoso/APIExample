@@ -1,10 +1,10 @@
-package com.luis.firstapi.firstapi.event.listener;
+package com.luis.apiexample.event.listener;
 
 import java.net.URI;
 
 import javax.servlet.http.HttpServletResponse;
 
-import com.luis.firstapi.firstapi.event.CreatedResourceEvent;
+import com.luis.apiexample.event.CreatedResourceEvent;
 
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package com.luis.firstapi.firstapi.event;
+package com.luis.apiexample.event;
 
 import java.util.Objects;
 

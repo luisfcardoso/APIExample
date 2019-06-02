@@ -1,4 +1,4 @@
-package com.luis.firstapi.firstapi.model;
+package com.luis.apiexample.model;
 
 import java.util.Objects;
 
