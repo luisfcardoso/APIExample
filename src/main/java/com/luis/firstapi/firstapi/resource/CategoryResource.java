@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import com.luis.firstapi.firstapi.model.Category;
 import com.luis.firstapi.firstapi.repository.CategoryRepository;
@@ -34,7 +35,7 @@ public class CategoryResource {
     
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Category> criar(@RequestBody Category category, HttpServletResponse response) {
+    public ResponseEntity<Category> criar(@Valid @RequestBody Category category, HttpServletResponse response) {
         Category saveCategory = categoryRepository.save(category);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
