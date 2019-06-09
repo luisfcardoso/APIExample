@@ -14,7 +14,7 @@ CREATE TABLE entry (
 
 INSERT INTO entry (description, due_date, payment_date, amount, note, type, category_id, person_id) values ('Monthly salary', '2017-06-10', null, 6500.00, 'Distribution of profits', 'REVENUE', 1, 1);
 INSERT INTO entry (description, due_date, payment_date, amount, note, type, category_id, person_id) values ('Trips', '2017-02-10', '2017-02-10', 100.32, null, 'EXPENSE', 2, 2);
-INSERT INTO entry (description, due_date, payment_date, amount, note, type, category_id, person_id) values ('Club', '2017-06-10', null, 120, null, '', 3, 3);
+INSERT INTO entry (description, due_date, payment_date, amount, note, type, category_id, person_id) values ('Club', '2017-06-10', null, 120, null, 'EXPENSE', 3, 3);
 INSERT INTO entry (description, due_date, payment_date, amount, note, type, category_id, person_id) values ('Electricity Bill', '2017-02-10', '2017-02-10', 110.44, 'Geração', 'REVENUE', 3, 4);
 INSERT INTO entry (description, due_date, payment_date, amount, note, type, category_id, person_id) values ('DMAE', '2017-06-10', null, 200.30, null, 'EXPENSE', 3, 5);
 INSERT INTO entry (description, due_date, payment_date, amount, note, type, category_id, person_id) values ('Extra', '2017-03-10', '2017-03-10', 1010.32, null, 'REVENUE', 4, 6);
