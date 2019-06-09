@@ -32,7 +32,7 @@ public class PersonService {
 		personRepository.save(savedPerson);
 	}
 	
-	private Person searchPersonById(Long id) {
+	public Person searchPersonById(Long id) {
 		Person savedPerson = personRepository.findOne(id);
 		if (savedPerson == null) {
 			throw new EmptyResultDataAccessException(1);

@@ -1,4 +1,4 @@
-package com.luis.apiexample.service.exception;
+package com.luis.apiexample.service;
 
 public class InexistentOrInactivePersonException extends RuntimeException {
 

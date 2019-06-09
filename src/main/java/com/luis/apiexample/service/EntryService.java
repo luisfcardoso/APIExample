@@ -4,7 +4,7 @@ import com.luis.apiexample.model.Entry;
 import com.luis.apiexample.model.Person;
 import com.luis.apiexample.repository.EntryRepository;
 import com.luis.apiexample.repository.PersonRepository;
-import com.luis.apiexample.service.exception.InexistentOrInactivePersonException;
+import com.luis.apiexample.service.InexistentOrInactivePersonException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,16 +16,16 @@ public class EntryService {
 	private PersonRepository personRepository;
 	
 	@Autowired 
-	private EntryRepository EntryRepository;
+	private EntryRepository entryRepository;
 
-	public Entry save(Entry entry) {
+	public Entry saveeEntry(Entry entry) {
         Person person = personRepository.findOne(entry.getPersonId().getId());
-        System.out.println(person.toString() + person.getActive().toString());
+
 		if (person == null || (!person.getActive())) {
 			throw new InexistentOrInactivePersonException();
 		}
 		
-		return EntryRepository.save(entry);
+		return entryRepository.save(entry);
 	}
 	
 }
