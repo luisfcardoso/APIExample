@@ -20,7 +20,7 @@ public class EntryService {
 
 	public Entry save(Entry entry) {
         Person person = personRepository.findOne(entry.getPersonId().getId());
-        
+        System.out.println(person.toString() + person.getActive().toString());
 		if (person == null || (!person.getActive())) {
 			throw new InexistentOrInactivePersonException();
 		}
