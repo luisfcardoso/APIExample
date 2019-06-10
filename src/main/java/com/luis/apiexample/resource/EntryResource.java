@@ -10,6 +10,7 @@ import com.luis.apiexample.service.InexistentOrInactivePersonException;
 import com.luis.apiexample.event.CreatedResourceEvent;
 import com.luis.apiexample.exceptionhandler.APIExceptionHandler.Error;
 import com.luis.apiexample.model.Entry;
+import com.luis.apiexample.repository.EntryFilter;
 import com.luis.apiexample.repository.EntryRepository;
 import com.luis.apiexample.service.EntryService;
 
@@ -44,8 +45,8 @@ public class EntryResource {
     private MessageSource messageSource;
 	
 	@GetMapping
-	public List<Entry> list() {
-		return entryRepository.findAll();
+	public List<Entry> search(EntryFilter entryFilter) {
+		return entryRepository.filter(entryFilter);
 	}
 	
 	@GetMapping("/{id}")
