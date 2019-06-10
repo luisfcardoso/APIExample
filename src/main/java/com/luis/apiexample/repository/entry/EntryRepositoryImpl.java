@@ -15,6 +15,9 @@ import com.luis.apiexample.model.Entry;
 import com.luis.apiexample.model.Entry_;
 import com.luis.apiexample.repository.EntryFilter;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.util.StringUtils;
 
 public class EntryRepositoryImpl implements EntryRepositoryQuery {
@@ -23,7 +26,7 @@ public class EntryRepositoryImpl implements EntryRepositoryQuery {
     private EntityManager manager;
 
     @Override
-    public List<Entry> filter(EntryFilter entryFilter) {
+    public Page<Entry> filter(EntryFilter entryFilter, Pageable pageable) {
         CriteriaBuilder builder = manager.getCriteriaBuilder();
         CriteriaQuery<Entry> criteria = builder.createQuery(Entry.class);
         Root<Entry> root = criteria.from(Entry.class);
@@ -32,7 +35,9 @@ public class EntryRepositoryImpl implements EntryRepositoryQuery {
         criteria.where(predicates);
 
         TypedQuery<Entry> query = manager.createQuery(criteria);
-        return query.getResultList();
+        addRestrictionsOfPagination(query, pageable);
+		
+		return new PageImpl<>(query.getResultList(), pageable, total(entryFilter));
     }
 
     private Predicate[] createRestrictions(EntryFilter entryFilter, CriteriaBuilder builder, Root<Entry> root) {
@@ -51,5 +56,27 @@ public class EntryRepositoryImpl implements EntryRepositoryQuery {
 		}
 		
 		return predicates.toArray(new Predicate[predicates.size()]);
-	}
+    }
+    
+    private void addRestrictionsOfPagination(TypedQuery<Entry> query, Pageable pageable) {
+        int currentPage = pageable.getPageNumber();
+		int totalPerPage = pageable.getPageSize();
+		int firstPage = currentPage * totalPerPage;
+		
+		query.setFirstResult(firstPage);
+		query.setMaxResults(totalPerPage);
+    }
+
+    private Long total(EntryFilter entryFilter) {
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+		CriteriaQuery<Long> criteria = builder.createQuery(Long.class);
+		Root<Entry> root = criteria.from(Entry.class);
+		
+		Predicate[] predicates = createRestrictions(entryFilter, builder, root);
+		criteria.where(predicates);
+		
+        criteria.select(builder.count(root));
+        
+		return manager.createQuery(criteria).getSingleResult();
+    }
 }
