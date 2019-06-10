@@ -8,10 +8,10 @@ public class EntryFilter {
 
 	private String description;
 	
-	@DateTimeFormat(pattern = "yyyy-mm-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dueDateFrom;
 	
-	@DateTimeFormat(pattern = "yyyy-mm-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dueDateTo;
 
 	public String getDescription() {
