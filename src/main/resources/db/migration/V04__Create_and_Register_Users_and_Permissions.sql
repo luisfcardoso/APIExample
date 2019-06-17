@@ -11,8 +11,8 @@ CREATE TABLE permission (
 );
 
 CREATE TABLE users_permission (
-	id_users BIGSERIAL PRIMARY KEY,
-	id_permission BIGSERIAL PRIMARY KEY,
+	id_users BIGSERIAL NOT NULL,
+	id_permission BIGSERIAL NOT NULL,
 	PRIMARY KEY (id_users, id_permission),
 	FOREIGN KEY (id_users) REFERENCES users(id),
 	FOREIGN KEY (id_permission) REFERENCES permission(id)
