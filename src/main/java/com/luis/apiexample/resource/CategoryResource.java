@@ -30,7 +30,7 @@ public class CategoryResource {
 
     @Autowired
     private ApplicationEventPublisher publisher;
-
+    
     @GetMapping
     public List<Category> list() {
         return categoryRepository.findAll();
