@@ -1,6 +1,5 @@
 package com.luis.apiexample.model;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,8 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 @Table(name = "users")
@@ -27,11 +24,6 @@ public class User {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "users_permission", joinColumns = @JoinColumn(name = "id_users"), inverseJoinColumns = @JoinColumn(name = "id_permission"))
 	private List<Permission> permissions;
-
-	public User(String email2, String password2, Collection<? extends GrantedAuthority> permissions2) {
-		this.email = email2;
-		this.password = password2;
-	}
 
 	public Long getId() {
 		return id;
