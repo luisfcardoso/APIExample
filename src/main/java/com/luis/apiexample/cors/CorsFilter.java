@@ -8,8 +8,8 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -19,11 +19,10 @@ import org.springframework.stereotype.Component;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class CorsFilter implements Filter {
 
-	//private String allowedOrigin = "*"; // choose origin
+	private String allowedOrigin = "*"; // choose origin
 	
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
-		/*
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 		
@@ -38,8 +37,7 @@ public class CorsFilter implements Filter {
 			response.setStatus(HttpServletResponse.SC_OK);
 		} else {
 			chain.doFilter(req, resp);
-		}*/
-		
+		}
 	}
 	
 	@Override
