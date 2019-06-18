@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import com.luis.apiexample.model.Users;
 import com.luis.apiexample.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +25,13 @@ public class AppUserDetailsService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<com.luis.apiexample.model.User> userOptional = userRepository.findByEmail(email);
-		com.luis.apiexample.model.User user = userOptional
+        Optional<Users> userOptional = userRepository.findByEmail(email);
+		Users user = userOptional
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário e/ou senha incorretos"));
 		return new User(email, user.getPassword(), getPermissions(user));
 	}
 
-	private Collection<? extends GrantedAuthority> getPermissions(com.luis.apiexample.model.User user) {
+	private Collection<? extends GrantedAuthority> getPermissions(Users user) {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
         user.getPermission()
                 .forEach(
