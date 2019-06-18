@@ -28,7 +28,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 		clients.inMemory()
 				.withClient("client")
-				.secret("$2y$12$UtpDoU3jXSy/QG8UeAP4meFfH68GN2tQCo.3DIK5FNPEvILQz5c6K")
+				.secret("@cl13nt@")
 				.scopes("read", "write")
 				.authorizedGrantTypes("password", "refresh_token")
 				.accessTokenValiditySeconds(1800)
