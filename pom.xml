@@ -81,6 +81,7 @@
     		<artifactId>hibernate-jpamodelgen</artifactId>
 		</dependency>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		<dependency>
     		<groupId>org.springframework.boot</groupId>
@@ -101,8 +102,6 @@
     		<groupId>org.springframework.security</groupId>
     		<artifactId>spring-security-jwt</artifactId>
 		</dependency>
-=======
->>>>>>> parent of 08cf387... config security
 	</dependencies>
 
 	<build>
