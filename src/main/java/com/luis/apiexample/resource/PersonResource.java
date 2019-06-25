@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +37,7 @@ public class PersonResource {
     private ApplicationEventPublisher publisher;
 	
 	@PostMapping
+	@PreAuthorize("hasAuthority('ROLE_REGISTER_PERSON')")
 	public ResponseEntity<Person> criar(@Valid @RequestBody Person person, HttpServletResponse response) {
 		Person savedPerson = personRepository.save(person);
 		
@@ -45,18 +47,21 @@ public class PersonResource {
 	}
 	
 	@GetMapping("/{id}")
+	@PreAuthorize("hasAuthority('ROLE_SEARCH_PERSON')")
 	public ResponseEntity<Person> searchById(@PathVariable Long id) {
 		Person person = personRepository.findOne(id);
 		 return person != null ? ResponseEntity.ok(person) : ResponseEntity.notFound().build();
     }
     
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@PreAuthorize("hasAuthority('ROLE_REMOVER_PERSON')")
     public void remove(@PathVariable Long id) {
         personRepository.delete(id);
 	}
 	
 	@PutMapping("/{id}")
+	@PreAuthorize("hasAuthority('ROLE_REGISTER_PERSON')")
 	public ResponseEntity<Person> update(@PathVariable Long id, @Valid @RequestBody Person person) {
 		Person savedPerson = personService.update(id, person);
 		return ResponseEntity.ok(savedPerson);
@@ -64,6 +69,7 @@ public class PersonResource {
 
 	@PutMapping("/{id}/active")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@PreAuthorize("hasAuthority('ROLE_REGISTER_PERSON')")
 	public void updateByPropertyActive(@PathVariable Long id, @RequestBody Boolean active) {
 		personService.updateByPropertyActive(id, active);
 	}

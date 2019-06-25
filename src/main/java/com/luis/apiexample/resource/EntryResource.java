@@ -22,6 +22,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,17 +50,20 @@ public class EntryResource {
     private MessageSource messageSource;
 	
 	@GetMapping
+	@PreAuthorize("hasAuthority('ROLE_SEARCH_ENTRY')")
 	public Page<Entry> search(EntryFilter entryFilter, Pageable pageable) {
 		return entryRepository.filter(entryFilter, pageable);
 	}
 	
 	@GetMapping("/{id}")
+	@PreAuthorize("hasAuthority('ROLE_SEARCH_ENTRY')")
 	public ResponseEntity<Entry> searchById(@PathVariable Long id) {
 		Entry entry = entryRepository.findOne(id);
 		return entry != null ? ResponseEntity.ok(entry) : ResponseEntity.notFound().build();
     }
     
-    @PostMapping
+	@PostMapping
+	@PreAuthorize("hasAuthority('ROLE_REGISTER_ENTRY')")
 	public ResponseEntity<Entry> create(@Valid @RequestBody Entry entry, HttpServletResponse response) {
 		Entry savedEntry = entryService.saveeEntry(entry);
 		publisher.publishEvent(new CreatedResourceEvent(this, response, savedEntry.getId()));
@@ -77,6 +81,7 @@ public class EntryResource {
 
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@PreAuthorize("hasAuthority('ROLE_REMOVER_ENTRY')")
 	public void remove(@PathVariable Long id) {
 		entryRepository.delete(id);
 	}
