@@ -19,9 +19,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
-
-	@Autowired
-	private UserDetailsService userDetailsService;
 	
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -39,10 +36,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		endpoints
 			.tokenStore(tokenStore())
-			.accessTokenConverter(this.accessTokenConverter())
+			.accessTokenConverter(accessTokenConverter())
 			.reuseRefreshTokens(false)
-			.userDetailsService(this.userDetailsService)
-			.authenticationManager(this.authenticationManager);
+			.authenticationManager(authenticationManager);
 	}
 	
 	@Bean
