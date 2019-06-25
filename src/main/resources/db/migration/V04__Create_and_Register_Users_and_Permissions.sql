@@ -19,7 +19,7 @@ CREATE TABLE users_permission (
 );
 
 INSERT INTO users (id, name, email, password) values (1, 'Administrator', 'admin@email.com', '$2a$10$X607ZPhQ4EgGNaYKt3n4SONjIv9zc.VMWdEuhCuba7oLAL5IvcL5.');
-INSERT INTO users (id, name, email, password) values (2, 'Luis', 'luis@email.com', '$2y$12$tJnOcLyfJB0oTBSBA/lkWuKpNJg7ohZD75ku4HhbCgMEvS5ECCTYS');
+INSERT INTO users (id, name, email, password) values (2, 'Luis', 'luis@email.com', '$2a$10$X607ZPhQ4EgGNaYKt3n4SONjIv9zc.VMWdEuhCuba7oLAL5IvcL5.');
 
 INSERT INTO permission (id, description) values (1, 'ROLE_REGISTER_CATEGORY');
 INSERT INTO permission (id, description) values (2, 'ROLE_SEARCH_CATEGORY');
